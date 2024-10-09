@@ -1,0 +1,19 @@
+{% extends '_base.html' %}
+{% block body %}
+    <section class="d-flex justify-content-center">
+        <div class="row d-flex justify-content-center" style="margin-left: 100px">
+            {% for task in tasks %}
+                <div class="col-lg-4" style="text-align: center">
+                    <div class="card m-3" style="width: 18rem;">
+                        <img src="{{ task.image.url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ task.title }}</h5>
+                            <p class="card-text">{{ task.descriptions }}</p>
+                            <a href="{% url 'project:task_detail' task.id %}" class="btn btn-primary">More Info</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

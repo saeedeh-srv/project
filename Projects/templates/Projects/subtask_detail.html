@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}SubTask Information{% endblock %}
+{% block content %}
+<h2>{{ subtask.title }}</h2>
+<img src="{{ subtask.image.url }}" alt="{{ subtask.title }}">
+<p>Description: {{ subtask.description }}</p>
+<p>Color: {{ subtask.color }}</p>
+<p>Start Date: {{ subtask.start_date }}</p>
+<p>End Date: {{ subtask.end_date }}</p>
+<p>Budget: {{ subtask.budget }}</p>
+<a href="{% url 'projects:subtask_view' pk=subtask.project.pk %}">Back to subtasks</a>
+{% endblock %}

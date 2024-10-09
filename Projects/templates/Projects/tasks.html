@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %} List of Tasks {% endblock %}
+{% block content %}
+
+    <div class="container mt-4">
+      <a href="{% url 'projects:create_tasks' project.pk %}" class="btn bg-success">Create Task</a>
+
+        <div class="row">
+            {% for task in tasks %}
+                <div class="col-4 mt-2 mb-4">
+                <div class="all-cart">
+                    <div class="col">
+                        <div class="card h-100" style="border-color: {{ project.color }}">
+                            <img src="{{ task.image.url }}" class="card-img-top" alt="{{ subtask.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ task.title }}</h5>
+                                <p style="background-color: {{ project.color }};width: 20px;height: 20px;border-radius: 20px"></p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="{% url 'projects:task_detail' pk=project.pk %}" class="btn btn-primary">Info</a>
+                                <a href="{% url 'projects:subtask_view' project.pk%}" class="btn btn-primary">Insert SubTask</a>
+                                <a href="{% url 'projects:update_task' task.pk %}" class="btn btn-primary">update</a>
+                                <a href="{% url 'projects:delete_task' task.pk %}" class="btn btn-danger">delete</a>
+                                <small class="text-body-secondary">{{ task.start_date }}</small>
+                                <small class="text-body-secondary">{{ task.end_date }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

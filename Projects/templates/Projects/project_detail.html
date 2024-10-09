@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Project Information{% endblock %}
+{% block content %}
+<h2>{{ project.title }}</h2>
+<img src="{{ project.image.url }}" alt="{{ project.title }}">
+<p>Description: {{ project.description }}</p>
+<p>Color: {{ project.color }}</p>
+<p>Start Date: {{ project.start_date }}</p>
+<p>End Date: {{ project.end_date }}</p>
+<p>Budget: {{ project.budget }}</p>
+<a href="{% url 'projects:projects_list' %}">Back to projects</a>
+{% endblock %}

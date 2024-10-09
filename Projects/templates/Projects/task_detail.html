@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Task Information{% endblock %}
+{% block content %}
+<h2>{{ task.title }}</h2>
+<img src="{{ task.image.url }}" alt="{{ task.title }}">
+<p>Description: {{ task.description }}</p>
+<p>Color: {{ task.color }}</p>
+<p>Start Date: {{ task.start_date }}</p>
+<p>End Date: {{ task.end_date }}</p>
+<p>Budget: {{ task.budget }}</p>
+<a href="{% url 'projects:task_view' pk=task.project.pk %}">Back to tasks</a>
+{% endblock %}

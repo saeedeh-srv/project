@@ -1,0 +1,74 @@
+{% include '_base.html' %}
+
+{% block body %}<br>
+    <div class="container">
+        <div class="row">
+            <h2 style="text-align: center">information of project</h2>
+            <div class="col-4 mt-5">
+                <h3> project: {{ projects.title }}</h3>
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="flexSwitchCheckDefault">Project Status:</label>
+                            {% if projects.status is False %}
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            {% else %}
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked>
+                            {% endif %}
+                    </div>
+                <p>start: {{ projects.start }}</p>
+                <p>end: {{ projects.end }}</p>
+                <p style="background-color: {{ projects.color }};width: 40px;height: 40px;border-radius: 40px"></p>
+                <p>budget : {{ projects.budget }}</p>
+            </div>
+            <div class="col-4 mt-5">
+                <h4>description:</h4>
+                <p>{{ projects.descriptions }}</p>
+
+
+                <a href="{% url 'project:done_pj' projects.pk %}" class="btn btn-primary mt-5">Update</a>
+                <a href="{% url 'project:delete_pj' projects.pk %}" class="btn btn-danger mt-5">Delete</a>
+                <a href="{% url 'project:all_pj' %}" class="btn btn-outline-danger mt-5">Back</a>
+            </div>
+            <div class="col-4 mt-5">
+                <img src="{{ projects.image.url }}"
+                     width="100%" height="200px"
+                     style="border-color: black;border-radius: 30px;box-shadow: rgba(0,0,0,0.2) 10px 10px 10px 10px">
+
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-9">
+
+                <h2>all task of this project</h2>
+            </div>
+            <div class="col-3">
+                <a href="{% url 'project:cr_task' projects.id %}"
+                   class="btn btn-success"
+                >add new task</a>
+            </div>
+        </div>
+
+        <section class="d-flex justify-content-center">
+            <div class="row d-flex justify-content-center" style="margin-left: 100px">
+                {% for task in tasks %}
+                    <div class="col-lg-4" style="text-align: center">
+                        <div class="card m-3" style="width: 18rem;">
+                            <img src="{{ task.image.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ task.title }}</h5>
+                                <p class="card-text">{{ task.descriptions }}</p>
+                                <a href="{% url 'project:task_detail' task.id %}" class="btn btn-primary">More Info</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+    <br>
+    </div>
+
+
+
+
+{% endblock %}
